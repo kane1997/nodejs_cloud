@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/addproduct', (req, res, next) => {
+  console.log('In the middleware');
+  res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
+  next();
 });
+
+router.post('/product', (req, res, next) => {
+  console.log(req.body);
+  res.redirect('/');
+})
 
 module.exports = router;
