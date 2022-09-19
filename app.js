@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
 const port = 3000
+const indexRoutes = require('./routes/index');
+const usersRoutes = require('./routes/users');
+
 
 app.get('/', (req, res) => {
   res.send('Hello Konecer!')
@@ -10,16 +13,9 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/addproduct', (req, res, next) => {
-  console.log('In the middleware');
-  res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
-  next();
-});
+app.use(indexRoutes);
 
-app.use('/product', (req, res, next) => {
-  console.log(req.body);
-  res.redirect('/');
-})
+app.use(usersRoutes);
 // app.use('/addorder',(req,res,next)=>{
 //   console.log('In another middleware');
 //   res.send("<h1>The Add Order Page</h1>");
