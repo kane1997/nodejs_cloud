@@ -2,14 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 
-/* GET home page. */
+// /admin/addproduct =>get
 router.get('/addproduct', (req, res, next) => {
   console.log('In the middleware');
-  res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
+  res.send('<form action="/admin/addproduct" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
   next();
 });
 
-router.post('/product', (req, res, next) => {
+
+// /admin/addproduct =>post
+router.post('/addproduct', (req, res, next) => {
   console.log(req.body);
   res.redirect('/');
 })

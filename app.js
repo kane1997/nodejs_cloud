@@ -7,15 +7,15 @@ const usersRoutes = require('./routes/users');
 
 
 app.get('/', (req, res) => {
-  res.send('Hello Konecer!')
+  res.send('<h1>Hello Konecer!</h1>')
 })
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(indexRoutes);
+app.use('/admin', indexRoutes);
 
-app.use(usersRoutes);
+app.use('/admin', usersRoutes);
 // app.use('/addorder',(req,res,next)=>{
 //   console.log('In another middleware');
 //   res.send("<h1>The Add Order Page</h1>");
@@ -26,6 +26,9 @@ app.use(usersRoutes);
 //   // console.log('In home!');
 //   res.status(300).send('<h1>Hello from Express!</h1>');
 // });
+app.use( (req,res,next)=>{
+  res.status(404).send('<h1>Page not Found</h1>');
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
