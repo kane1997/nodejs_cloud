@@ -6,16 +6,16 @@ const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
 
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello Konecer!</h1>')
-})
+// app.get('/', (req, res) => {
+//   res.send('<h1>Hello Konecer!</h1>')
+// })
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/admin', indexRoutes);
+app.use(indexRoutes);
 
-app.use('/admin', usersRoutes);
+app.use(usersRoutes);
 // app.use('/addorder',(req,res,next)=>{
 //   console.log('In another middleware');
 //   res.send("<h1>The Add Order Page</h1>");
