@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3000
 const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
+const path = require('./utils/path');
 
 
 // app.get('/', (req, res) => {
