@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3000
 const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
-const path = require('./utils/path');
+const path = require('path');
 
 
 // app.get('/', (req, res) => {
@@ -13,6 +13,8 @@ const path = require('./utils/path');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(indexRoutes);
 
@@ -28,7 +30,7 @@ app.use(usersRoutes);
 //   res.status(300).send('<h1>Hello from Express!</h1>');
 // });
 app.use( (req,res,next)=>{
-  res.status(404).send('<h1>Page not Found</h1>');
+  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 })
 
 app.listen(port, () => {
