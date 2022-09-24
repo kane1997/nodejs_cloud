@@ -11,12 +11,14 @@ const path = require('path');
 //   res.send('<h1>Hello Konecer!</h1>')
 // })
 
+app.set('view engine', 'pug');
+app.set('views', 'views')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(indexRoutes);
+app.use(indexRoutes.routes);
 
 app.use(usersRoutes);
 // app.use('/addorder',(req,res,next)=>{
