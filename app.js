@@ -4,14 +4,15 @@ const bodyParser = require('body-parser');
 const port = 3000
 const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
+const expressHbs = require('express-handlebars')
 const path = require('path');
 
 
 // app.get('/', (req, res) => {
 //   res.send('<h1>Hello Konecer!</h1>')
 // })
-
-app.set('view engine', 'pug');
+app.engine('hbs', expressHbs());
+app.set('view engine', 'hbs');
 app.set('views', 'views')
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,9 +33,10 @@ app.use(usersRoutes);
 //   res.status(300).send('<h1>Hello from Express!</h1>');
 // });
 app.use( (req,res,next)=>{
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).render('404');
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
